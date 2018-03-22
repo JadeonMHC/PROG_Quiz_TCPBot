@@ -1,0 +1,9 @@
+N = New Game request (from client)
+T = Server telling client to take turn (from server)
+M = Move ("M RC" where R = row index, C = column index)
+O X = GameOver where X is one of S (server won), C (client won), T (tie) (from server)
+EbbMessage = Error (from both)where bb are the two bytes of an unsigned short stating the length of the Message
+             which can be anything from 1 to 2^16 -1
+CbbMessage = Chat message where bb is an unsigned short like in the Error situation above
+
+
