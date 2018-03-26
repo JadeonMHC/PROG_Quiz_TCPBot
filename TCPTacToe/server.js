@@ -82,8 +82,12 @@ function Game(socket) {
 
       if (ws != ' ')
          this.socket.write('O ' + (ws == 'X' ? 'S' : 'C') + '\n');
-      else
-         this.socket.write('T');
+      else {
+         if (this.OpenCount() == 0)
+            this.socket.write('O T');
+         else
+            this.socket.write('T');
+      }
    };
 
    this.ClientMove = function(r, c) {
@@ -94,7 +98,10 @@ function Game(socket) {
             var ws = this.WinState();
 
             if (ws == ' ') {
-               this.ServerMove();
+               if (this.OpenCount() == 0)
+                  this.socket.write('O T');
+               else
+                  this.ServerMove();
             }
             else {
                this.socket.write('O ' + (ws == 'X' ? 'S' : 'C'));
@@ -127,7 +134,20 @@ function Game(socket) {
       }
 
       return ' ';
-   }
+   };
+
+   this.OpenCount = function() {
+      var tr = 0;
+
+      for (var r = 0; r < 3; r++) {
+         for(var c = 0; c < 3; c++) {
+            if (this.board[r][c] == ' ')
+               tr++;
+         }
+      }
+
+      return tr;
+   };
 }
 
 function Rand(min, max) {
