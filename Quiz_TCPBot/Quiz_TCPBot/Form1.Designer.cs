@@ -41,6 +41,7 @@
             this.numPort = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.gvScore = new System.Windows.Forms.ListBox();
+            this.lblStatus = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numGames)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numPort)).BeginInit();
             this.SuspendLayout();
@@ -51,6 +52,7 @@
             this.txtServer.Name = "txtServer";
             this.txtServer.Size = new System.Drawing.Size(158, 20);
             this.txtServer.TabIndex = 0;
+            this.txtServer.Text = "localhost";
             // 
             // label1
             // 
@@ -69,11 +71,12 @@
             this.btnConnect.TabIndex = 2;
             this.btnConnect.Text = "Connect";
             this.btnConnect.UseVisualStyleBackColor = true;
+            this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
             // 
             // grd00
             // 
             this.grd00.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grd00.Location = new System.Drawing.Point(12, 219);
+            this.grd00.Location = new System.Drawing.Point(12, 235);
             this.grd00.Name = "grd00";
             this.grd00.Size = new System.Drawing.Size(64, 59);
             this.grd00.TabIndex = 3;
@@ -83,7 +86,7 @@
             // grd01
             // 
             this.grd01.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grd01.Location = new System.Drawing.Point(82, 219);
+            this.grd01.Location = new System.Drawing.Point(82, 235);
             this.grd01.Name = "grd01";
             this.grd01.Size = new System.Drawing.Size(64, 59);
             this.grd01.TabIndex = 4;
@@ -93,7 +96,7 @@
             // grd02
             // 
             this.grd02.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grd02.Location = new System.Drawing.Point(152, 219);
+            this.grd02.Location = new System.Drawing.Point(152, 235);
             this.grd02.Name = "grd02";
             this.grd02.Size = new System.Drawing.Size(64, 59);
             this.grd02.TabIndex = 5;
@@ -103,7 +106,7 @@
             // grd12
             // 
             this.grd12.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grd12.Location = new System.Drawing.Point(152, 284);
+            this.grd12.Location = new System.Drawing.Point(152, 300);
             this.grd12.Name = "grd12";
             this.grd12.Size = new System.Drawing.Size(64, 59);
             this.grd12.TabIndex = 8;
@@ -113,7 +116,7 @@
             // grd11
             // 
             this.grd11.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grd11.Location = new System.Drawing.Point(82, 284);
+            this.grd11.Location = new System.Drawing.Point(82, 300);
             this.grd11.Name = "grd11";
             this.grd11.Size = new System.Drawing.Size(64, 59);
             this.grd11.TabIndex = 7;
@@ -123,7 +126,7 @@
             // grd10
             // 
             this.grd10.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grd10.Location = new System.Drawing.Point(12, 284);
+            this.grd10.Location = new System.Drawing.Point(12, 300);
             this.grd10.Name = "grd10";
             this.grd10.Size = new System.Drawing.Size(64, 59);
             this.grd10.TabIndex = 6;
@@ -133,7 +136,7 @@
             // grd22
             // 
             this.grd22.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grd22.Location = new System.Drawing.Point(152, 349);
+            this.grd22.Location = new System.Drawing.Point(152, 365);
             this.grd22.Name = "grd22";
             this.grd22.Size = new System.Drawing.Size(64, 59);
             this.grd22.TabIndex = 11;
@@ -143,7 +146,7 @@
             // grd21
             // 
             this.grd21.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grd21.Location = new System.Drawing.Point(82, 349);
+            this.grd21.Location = new System.Drawing.Point(82, 365);
             this.grd21.Name = "grd21";
             this.grd21.Size = new System.Drawing.Size(64, 59);
             this.grd21.TabIndex = 10;
@@ -153,7 +156,7 @@
             // grd20
             // 
             this.grd20.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grd20.Location = new System.Drawing.Point(12, 349);
+            this.grd20.Location = new System.Drawing.Point(12, 365);
             this.grd20.Name = "grd20";
             this.grd20.Size = new System.Drawing.Size(64, 59);
             this.grd20.TabIndex = 9;
@@ -199,13 +202,24 @@
             this.btnPlay.TabIndex = 14;
             this.btnPlay.Text = "Play!";
             this.btnPlay.UseVisualStyleBackColor = true;
+            this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click);
             // 
             // numPort
             // 
             this.numPort.Location = new System.Drawing.Point(58, 38);
+            this.numPort.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
             this.numPort.Name = "numPort";
             this.numPort.Size = new System.Drawing.Size(158, 20);
             this.numPort.TabIndex = 15;
+            this.numPort.Value = new decimal(new int[] {
+            11000,
+            0,
+            0,
+            0});
             // 
             // label3
             // 
@@ -224,11 +238,20 @@
             this.gvScore.Size = new System.Drawing.Size(204, 95);
             this.gvScore.TabIndex = 17;
             // 
+            // lblStatus
+            // 
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Location = new System.Drawing.Point(11, 204);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(0, 13);
+            this.lblStatus.TabIndex = 18;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(629, 546);
+            this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.gvScore);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.numPort);
@@ -276,6 +299,7 @@
         private System.Windows.Forms.NumericUpDown numPort;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ListBox gvScore;
+        private System.Windows.Forms.Label lblStatus;
     }
 }
 

@@ -2,7 +2,7 @@ var net = require('net');
 var readline = require('readline');
 
 var client = new net.Socket();
-client.connect(11001, '172.18.31.113]', function() {});
+client.connect(process.argv[3], process.argv[2], function() {});
 
 client.on('data', (data) => {
    console.log(data.toString());

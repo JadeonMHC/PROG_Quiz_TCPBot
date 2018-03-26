@@ -35,7 +35,7 @@ var server = net.createServer((socket) => {
    });
 });
 
-server.listen(11000, '172.18.28.102');
+server.listen(11000, '0.0.0.0');
 
 const GS_NOGAME = 0;
 const GS_AWAITING_TURN = 1;
@@ -97,7 +97,7 @@ function Game(socket) {
                this.ServerMove();
             }
             else {
-               this.socket.write('O ' + ws);
+               this.socket.write('O ' + (ws == 'X' ? 'S' : 'C'));
             }
          }
          else {
